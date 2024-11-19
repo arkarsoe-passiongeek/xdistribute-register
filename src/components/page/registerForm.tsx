@@ -1,0 +1,303 @@
+"use client"
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { Button } from "@/components/ui/button"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import CCountrySelectInput from "../form/c-country-select-input"
+import { CBaseSelect } from "../form/c-base-select"
+import FormSectionTitle from "../form/form-section-title"
+import CPhoneNumberInput from "../form/c-phone-number-input"
+import { Checkbox } from "../ui/checkbox"
+import Link from "next/link"
+
+const formSchema = z.object({
+    country: z.string().min(2, {
+        message: "Country must be at least 2 characters.",
+    }),
+    cityVillage: z.string().min(2, {
+        message: "City & Village must be at least 2 characters.",
+    }),
+    streetRoad: z.string().min(2, {
+        message: "Street Road must be at least 2 characters.",
+    }),
+    no: z.string().min(2, {
+        message: "No must be at least 2 characters.",
+    }),
+    shopName: z.string().min(2, {
+        message: "Shop Name must be at least 2 characters.",
+    }),
+    ownerName: z.string().min(2, {
+        message: "Owner Name must be at least 2 characters.",
+    }),
+    phoneNumber: z.string().min(2, {
+        message: "Phone Number must be at least 2 characters.",
+    }),
+    division: z.string().min(2, {
+        message: "Division must be at least 2 characters.",
+    }),
+    township: z.string().min(2, {
+        message: "township must be at least 2 characters.",
+    }),
+    applicant: z.string().min(2, {
+        message: "applicant must be at least 2 characters.",
+    }),
+    policyAgreement: z.boolean(),
+})
+
+const divisions = [
+    {
+        label: 'Division one',
+        value: 'division-one'
+    }
+]
+
+const townships = [
+    {
+        label: 'Township one',
+        value: 'township-one'
+    }
+]
+
+const applicants = [
+    {
+        label: 'applicant one',
+        value: 'applicant-one'
+    }
+]
+
+export function RegisterForm() {
+    // 1. Define your form.
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            country: "",
+            cityVillage: "",
+            streetRoad: "",
+            no: "",
+            shopName: "",
+            ownerName: "",
+            phoneNumber: "",
+            division: "",
+            township: "",
+            applicant: "",
+            policyAgreement: false
+        },
+    })
+
+    // 2. Define a submit handler.
+    function onSubmit(values: z.infer<typeof formSchema>) {
+        // Do something with the form values.
+        // ✅ This will be type-safe and validated.
+        console.log(values)
+    }
+
+    return (
+        <div>
+            {/* <div className="mt-[30px] grid grid-cols-2 gap-[30px]">
+                <div className="space-y-[30px]">
+                    <FormSectionTitle>Shop Info :</FormSectionTitle>
+                </div>
+                <div className="space-y-[30px]">
+                    <div className="space-y-[30px]">
+                        <FormSectionTitle>Personal Info :</FormSectionTitle>
+                        <CBaseInput id="owner-name" label="Owner Name" placeholder="Enter Owner Name" />
+                        <CPhoneNumberInput />
+                    </div>
+                    <div className="space-y-[30px]">
+                        <FormSectionTitle>Other Info :</FormSectionTitle>
+                        <CBaseSelect title="Select Applicant" id="applicant" label="Applicant" items={townships} />
+                    </div>
+                </div>
+            </div> */}
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                    <div className="space-y-[30px] lg:space-y-0 lg:mt-[30px] grid grid-cols-1 lg:grid-cols-2 lg:gap-[30px]">
+                        <div>
+                            <FormSectionTitle>Shop Info :</FormSectionTitle>
+                            <div className="space-y-[10px] lg:space-y-[30px]">
+                                <FormField
+                                    control={form.control}
+                                    name="country"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Country</FormLabel>
+                                            <FormControl>
+                                                <CCountrySelectInput placeholder="Select Country" onValueChange={field.onChange} defaultValue={field.value} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="division"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Divisions</FormLabel>
+                                            <FormControl>
+                                                <CBaseSelect items={divisions} placeholder="Select Your Division" onValueChange={field.onChange} defaultValue={field.value} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="township"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Township</FormLabel>
+                                            <FormControl>
+                                                <CBaseSelect items={townships} placeholder="Select Your Township" onValueChange={field.onChange} defaultValue={field.value} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="cityVillage"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>City & Village</FormLabel>
+                                            <FormControl>
+                                                <Input className="text-sm md:text-base" placeholder="Enter your City & Village" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="streetRoad"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Street / Road</FormLabel>
+                                            <FormControl>
+                                                <Input className="text-sm md:text-base" placeholder="Enter your Street / Road" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="no"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>No.</FormLabel>
+                                            <FormControl>
+                                                <Input className="text-sm md:text-base" placeholder="Enter your City & Village" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="shopName"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Shop Name</FormLabel>
+                                            <FormControl>
+                                                <Input className="text-sm md:text-base" placeholder="Enter your Shop Name" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        </div>
+                        <div className="space-y-[30px]">
+                            <div>
+                                <FormSectionTitle>Personal Info :</FormSectionTitle>
+                                <div className="space-y-[10px] lg:space-y-[30px]">
+                                    <FormField
+                                        control={form.control}
+                                        name="ownerName"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Owner Name</FormLabel>
+                                                <FormControl>
+                                                    <Input className="text-sm md:text-base" placeholder="Enter your Owner Name" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="phoneNumber"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Phone Number</FormLabel>
+                                                <FormControl>
+                                                    <CPhoneNumberInput placeholder="Enter your phone number" onValueChange={field.onChange} defaultValue={field.value} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <FormSectionTitle>Other Info :</FormSectionTitle>
+                                <div className="space-y-[10px] lg:space-y-[30px]">
+                                    <FormField
+                                        control={form.control}
+                                        name="applicant"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Applicant</FormLabel>
+                                                <FormControl>
+                                                    <CBaseSelect items={applicants} placeholder="Select Your Applicant" onValueChange={field.onChange} defaultValue={field.value} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="policyAgreement"
+                                        render={({ field }) => (
+                                            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                                <FormControl>
+                                                    <Checkbox
+                                                        checked={field.value}
+                                                        onCheckedChange={field.onChange}
+                                                    />
+                                                </FormControl>
+                                                <div className="space-y-1 leading-none">
+                                                    <FormLabel>
+                                                        I agree to the <Link className="text-primary underline" href="www.google.com">Terms and Conditions</Link>, <Link className="text-primary underline" href="www.google.com">Privacy Policy</Link>, <Link className="text-primary underline" href="www.google.com">License Agreement</Link>
+                                                    </FormLabel>
+                                                </div>
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <Button className="w-full md:w-auto" type="submit">Register</Button>
+                </form>
+            </Form>
+            <div>
+                {/* {JSON.stringify(form.getValues())} */}
+            </div>
+        </div>
+    )
+}
