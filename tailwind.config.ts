@@ -74,7 +74,8 @@ export default {
 				"white-2": 'var(--white-2)',
 				"c-hover": 'var(--hover)',
 				"c-contrast": 'var(--contrast)',
-				"c-primary": 'hsl(var(--primary))'
+				"c-primary": 'hsl(var(--primary))',
+				"c-border-stork": 'var(--border-stork)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
