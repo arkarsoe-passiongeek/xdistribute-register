@@ -1,26 +1,29 @@
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
-export function CLanguageSelectRadio() {
+interface CLanguageSelectRadioProps {
+    languages: {
+        label: string,
+        value: string
+    }[],
+    selectedLanguage: string,
+    onLanguageSelect: (value: string) => void
+}
+
+export function CLanguageSelectRadio({ languages, selectedLanguage, onLanguageSelect }: CLanguageSelectRadioProps) {
     return (
-        <div className="mt-[30px]">
-            <RadioGroup defaultValue="mm" className="flex flex-col justify-between">
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="English" id="r1" />
-                    <Label htmlFor="r1">English</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="Myanmar" id="r2" />
-                    <Label htmlFor="r2">မြန်မာ</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="Singapore" id="r3" />
-                    <Label htmlFor="r3">Singapore</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="Malaysia" id="r4" />
-                    <Label htmlFor="r4">Malaysia</Label>
-                </div>
+        <div>
+            <RadioGroup onValueChange={onLanguageSelect} defaultValue={selectedLanguage} className="flex flex-col md:flex-row justify-between md:items-start md:h-[100px]">
+                {
+                    languages.map(language => {
+                        return (
+                            <div key={language.value} className="flex items-center space-x-2">
+                                <RadioGroupItem value={language.value} id={language.value} />
+                                <Label htmlFor={language.value}>{language.label}</Label>
+                            </div>
+                        )
+                    })
+                }
             </RadioGroup>
         </div>
     )

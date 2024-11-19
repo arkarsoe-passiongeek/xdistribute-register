@@ -9,7 +9,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import CFormLabel from "./c-form-label"
 
 interface CBaseSelectProps {
     items: {

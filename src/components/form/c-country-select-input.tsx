@@ -13,7 +13,6 @@ import my from "../../../public/assets/images/countries/my.png"
 import sg from "../../../public/assets/images/countries/sg.png"
 import th from "../../../public/assets/images/countries/th.png"
 import Image from "next/image";
-import CFormLabel from "./c-form-label";
 
 const countries = [
     {

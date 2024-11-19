@@ -1,15 +1,12 @@
 
 import Link from "next/link";
-
-import Container from "@/components/custom/container";
 import NavbarActions from "@/components/custom/navbar-actions";
-import MainNav from "@/components/custom/main-nav";
 import Image from "next/image";
 import logoImage from '../../../public/assets/images/logo/xdistribute-main-logo.png'
 
 export const revalidate = 0;
 
-const Navbar = async () => {
+const Navbar = async ({ params: { locale } }: { params: { locale: string } }) => {
     return (
         <div className="shadow-sm bg-white-1">
             <div className="container px-[25px] mx-auto">
@@ -22,8 +19,7 @@ const Navbar = async () => {
                             alt="Logo of the company"
                         />
                     </Link>
-                    {/* <MainNav /> */}
-                    <NavbarActions />
+                    <NavbarActions params={{ locale }} />
                 </div>
             </div>
         </div >

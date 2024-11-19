@@ -5,7 +5,6 @@
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import React, { forwardRef, useState, type InputHTMLAttributes } from "react";
-import CFormLabel from "./c-form-label";
 import {
     Dialog,
     DialogContent,
@@ -24,7 +23,7 @@ interface CPhoneNumberInput extends React.InputHTMLAttributes<HTMLInputElement> 
     defaultValue: string
 }
 
-export default function CPhoneNumberInput({ placeholder, onValueChange, defaultValue, ...rest }: CPhoneNumberInput) {
+export default function CPhoneNumberInput({ placeholder, onValueChange }: CPhoneNumberInput) {
     const [inputValue, setInputValue] = useState("");
     const [dialogOpen, setDialogOpen] = useState(false)
     const [selectedCountry, setSelectedCountry] = useState({
@@ -61,7 +60,7 @@ export default function CPhoneNumberInput({ placeholder, onValueChange, defaultV
                     <DialogTrigger asChild>
                         <div className="flex flex-nowrap items-center gap-1 w-[100px]">
                             <Image src={selectedCountry.flag} height={16} width={24} alt="country flag" />
-                            <span className="text-[#000] text-sm md:text-base">+ {selectedCountry.number}</span>
+                            <span className="text-[#000] text-sm">+ {selectedCountry.number}</span>
                         </div>
                     </DialogTrigger>
                     <DialogContent className={"w-[80%] lg:max-w-screen-lg rounded border-c-contrast overflow-y-scroll max-h-screen"}>
@@ -73,7 +72,7 @@ export default function CPhoneNumberInput({ placeholder, onValueChange, defaultV
                                 return (
                                     <div key={each.number} onClick={() => onCountrySelect(each)} className={`p-[8px] rounded flex justify-between hover:bg-primary ${selectedCountry.number === each.number ? 'bg-c-primary' : ''}`}>
                                         <Image src={each.flag} height={16} width={30} alt="country flag" />
-                                        <span className="text-sm md:text-base">{each.number}</span>
+                                        <span className="text-sm">{each.number}</span>
                                     </div>
                                 )
                             })}
@@ -82,7 +81,7 @@ export default function CPhoneNumberInput({ placeholder, onValueChange, defaultV
                 </Dialog>
                 <Separator orientation="vertical" className="h-[10px]" />
                 <Input
-                    className="border-0 outline-none focus:ring-0 w-full focus-visible:ring-0 focus-visible:ring-offset-0 p-0 h-10 text-sm md:text-base"
+                    className="border-0 outline-none focus:ring-0 w-full focus-visible:ring-0 focus-visible:ring-offset-0 p-0 h-10 text-sm"
                     placeholder={placeholder}
                     onChange={onInputChange}
                     defaultValue={inputValue}

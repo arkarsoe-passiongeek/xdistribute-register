@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -21,6 +20,7 @@ import FormSectionTitle from "../form/form-section-title"
 import CPhoneNumberInput from "../form/c-phone-number-input"
 import { Checkbox } from "../ui/checkbox"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
 const formSchema = z.object({
     country: z.string().min(2, {
@@ -53,6 +53,9 @@ const formSchema = z.object({
     applicant: z.string().min(2, {
         message: "applicant must be at least 2 characters.",
     }),
+    applicantName: z.string().min(2, {
+        message: "applicant must be at least 2 characters.",
+    }),
     policyAgreement: z.boolean(),
 })
 
@@ -78,6 +81,7 @@ const applicants = [
 ]
 
 export function RegisterForm() {
+    const t = useTranslations('Register');
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -92,6 +96,7 @@ export function RegisterForm() {
             division: "",
             township: "",
             applicant: "",
+            applicantName: "",
             policyAgreement: false
         },
     })
@@ -105,28 +110,13 @@ export function RegisterForm() {
 
     return (
         <div>
-            {/* <div className="mt-[30px] grid grid-cols-2 gap-[30px]">
-                <div className="space-y-[30px]">
-                    <FormSectionTitle>Shop Info :</FormSectionTitle>
-                </div>
-                <div className="space-y-[30px]">
-                    <div className="space-y-[30px]">
-                        <FormSectionTitle>Personal Info :</FormSectionTitle>
-                        <CBaseInput id="owner-name" label="Owner Name" placeholder="Enter Owner Name" />
-                        <CPhoneNumberInput />
-                    </div>
-                    <div className="space-y-[30px]">
-                        <FormSectionTitle>Other Info :</FormSectionTitle>
-                        <CBaseSelect title="Select Applicant" id="applicant" label="Applicant" items={townships} />
-                    </div>
-                </div>
-            </div> */}
+            <h1 className="text-primary text-center font-bold text-lg mb-[30px] lg:text-3xl">{t('title')}</h1>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <div className="space-y-[30px] lg:space-y-0 lg:mt-[30px] grid grid-cols-1 lg:grid-cols-2 lg:gap-[30px]">
                         <div>
                             <FormSectionTitle>Shop Info :</FormSectionTitle>
-                            <div className="space-y-[10px] lg:space-y-[30px]">
+                            <div className="space-y-[10px] lg:space-y-[20px]">
                                 <FormField
                                     control={form.control}
                                     name="country"
@@ -173,7 +163,7 @@ export function RegisterForm() {
                                         <FormItem>
                                             <FormLabel>City & Village</FormLabel>
                                             <FormControl>
-                                                <Input className="text-sm md:text-base" placeholder="Enter your City & Village" {...field} />
+                                                <Input className="text-sm" placeholder="Enter your City & Village" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -186,7 +176,7 @@ export function RegisterForm() {
                                         <FormItem>
                                             <FormLabel>Street / Road</FormLabel>
                                             <FormControl>
-                                                <Input className="text-sm md:text-base" placeholder="Enter your Street / Road" {...field} />
+                                                <Input className="text-sm" placeholder="Enter your Street / Road" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -199,7 +189,7 @@ export function RegisterForm() {
                                         <FormItem>
                                             <FormLabel>No.</FormLabel>
                                             <FormControl>
-                                                <Input className="text-sm md:text-base" placeholder="Enter your City & Village" {...field} />
+                                                <Input className="text-sm" placeholder="Enter your City & Village" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -212,7 +202,7 @@ export function RegisterForm() {
                                         <FormItem>
                                             <FormLabel>Shop Name</FormLabel>
                                             <FormControl>
-                                                <Input className="text-sm md:text-base" placeholder="Enter your Shop Name" {...field} />
+                                                <Input className="text-sm" placeholder="Enter your Shop Name" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -223,7 +213,7 @@ export function RegisterForm() {
                         <div className="space-y-[30px]">
                             <div>
                                 <FormSectionTitle>Personal Info :</FormSectionTitle>
-                                <div className="space-y-[10px] lg:space-y-[30px]">
+                                <div className="space-y-[10px] lg:space-y-[20px]">
                                     <FormField
                                         control={form.control}
                                         name="ownerName"
@@ -231,7 +221,7 @@ export function RegisterForm() {
                                             <FormItem>
                                                 <FormLabel>Owner Name</FormLabel>
                                                 <FormControl>
-                                                    <Input className="text-sm md:text-base" placeholder="Enter your Owner Name" {...field} />
+                                                    <Input className="text-sm" placeholder="Enter your Owner Name" {...field} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -254,7 +244,7 @@ export function RegisterForm() {
                             </div>
                             <div>
                                 <FormSectionTitle>Other Info :</FormSectionTitle>
-                                <div className="space-y-[10px] lg:space-y-[30px]">
+                                <div className="space-y-[10px] lg:space-y-[20px]">
                                     <FormField
                                         control={form.control}
                                         name="applicant"
@@ -270,29 +260,46 @@ export function RegisterForm() {
                                     />
                                     <FormField
                                         control={form.control}
-                                        name="policyAgreement"
+                                        name="applicantName"
                                         render={({ field }) => (
-                                            <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                            <FormItem>
+                                                <FormLabel>Applicant Name</FormLabel>
                                                 <FormControl>
-                                                    <Checkbox
-                                                        checked={field.value}
-                                                        onCheckedChange={field.onChange}
-                                                    />
+                                                    <Input className="text-sm" placeholder="Enter Applicant Name" {...field} />
                                                 </FormControl>
-                                                <div className="space-y-1 leading-none">
-                                                    <FormLabel>
-                                                        I agree to the <Link className="text-primary underline" href="www.google.com">Terms and Conditions</Link>, <Link className="text-primary underline" href="www.google.com">Privacy Policy</Link>, <Link className="text-primary underline" href="www.google.com">License Agreement</Link>
-                                                    </FormLabel>
-                                                </div>
+                                                <FormMessage />
                                             </FormItem>
                                         )}
                                     />
+
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <Button className="w-full md:w-auto" type="submit">Register</Button>
+                    <div className="space-y-[10px] lg:space-y-[20px]">
+                        <FormField
+                            control={form.control}
+                            name="policyAgreement"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            I agree to the <Link className="text-primary underline" href="www.google.com">Terms and Conditions</Link>, <Link className="text-primary underline" href="www.google.com">Privacy Policy</Link>, <Link className="text-primary underline" href="www.google.com">License Agreement</Link>
+                                        </FormLabel>
+                                    </div>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="w-full flex justify-center">
+                        <Button className="w-full lg:w-[500px] lg:mx-auto hover:bg-c-hover" type="submit">Register</Button>
+                    </div>
                 </form>
             </Form>
             <div>
