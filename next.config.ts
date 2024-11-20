@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   /* config options here */
   images: {
+    // unoptimized: true,
     localPatterns: [
       {
         pathname: '/assets/images/**',

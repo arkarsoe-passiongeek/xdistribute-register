@@ -60,10 +60,10 @@ export default function CPhoneNumberInput({ placeholder, onValueChange }: CPhone
             <div className="flex justify-between border border-input rounded px-[8px] h-full">
                 <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                     <DialogTrigger asChild>
-                        <div className="flex flex-nowrap items-center w-[50px] shrink-0">
-                            <Image src={selectedCountry.flag} height={16} width={24} alt="country flag" className="cursor-pointer" />
+                        <button type="button" className="flex flex-nowrap items-center w-[50px] shrink-0 cursor-pointer">
+                            <Image src={selectedCountry.flag} height={16} width={24} alt="country flag" />
                             <span className="text-[#000] text-sm">+{selectedCountry.number}</span>
-                        </div>
+                        </button>
                     </DialogTrigger>
                     <DialogContent className={"w-[80%] lg:max-w-screen-lg rounded border-c-contrast overflow-y-scroll max-h-screen"}>
                         <DialogHeader>
