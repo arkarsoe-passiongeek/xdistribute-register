@@ -44,9 +44,9 @@ const LanguageSelectDialog = ({ params: { locale } }: { params: { locale: string
                     <p className="mb-0 text-sm">{getSelectedLanguage().label}</p>
                 </CBaseButton>
             </DialogTrigger>
-            <DialogContent className={"w-[80%] lg:max-w-screen-md rounded border-c-contrast overflow-y-scroll max-h-screen items-start"}>
+            <DialogContent className={"w-[80%] lg:max-w-screen-md rounded border-c-contrast overflow-y-scroll max-h-screen items-start gap-[15px] lg:gap-[30px]"}>
                 <DialogHeader>
-                    <DialogTitle>Choose Language</DialogTitle>
+                    <DialogTitle className="font-medium">Choose Language</DialogTitle>
                 </DialogHeader>
                 <div className="">
                     <CLanguageSelectRadio languages={languages} selectedLanguage={getSelectedLanguage().value} onLanguageSelect={onLanguageSelect} />

@@ -13,13 +13,13 @@ interface CLanguageSelectRadioProps {
 export function CLanguageSelectRadio({ languages, selectedLanguage, onLanguageSelect }: CLanguageSelectRadioProps) {
     return (
         <div>
-            <RadioGroup onValueChange={onLanguageSelect} defaultValue={selectedLanguage} className="flex flex-col md:flex-row justify-between md:items-start md:h-[100px]">
+            <RadioGroup onValueChange={onLanguageSelect} defaultValue={selectedLanguage} className="flex flex-col md:flex-row justify-between md:items-start md:h-[100px] gap-[10px] lg:gap-0">
                 {
                     languages.map(language => {
                         return (
                             <div key={language.value} className="flex items-center space-x-2">
                                 <RadioGroupItem value={language.value} id={language.value} />
-                                <Label htmlFor={language.value}>{language.label}</Label>
+                                <Label htmlFor={language.value} className="text-base font-normal">{language.label}</Label>
                             </div>
                         )
                     })

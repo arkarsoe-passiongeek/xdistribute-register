@@ -141,12 +141,12 @@ export function RegisterForm() {
                                     control={form.control}
                                     name="country"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Country</FormLabel>
+                                        <FormItem className="space-y-0">
+                                            <FormLabel className="text-base inline-block mb-1 !text-black">Country</FormLabel>
                                             <FormControl>
                                                 <CCountrySelectInput placeholder="Select Country" onValueChange={field.onChange} defaultValue={field.value} />
                                             </FormControl>
-                                            <FormMessage />
+                                            <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
                                     )}
                                 />
@@ -154,12 +154,12 @@ export function RegisterForm() {
                                     control={form.control}
                                     name="division"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Divisions</FormLabel>
+                                        <FormItem className="space-y-0">
+                                            <FormLabel className="text-base inline-block mb-1 !text-black">Divisions</FormLabel>
                                             <FormControl>
                                                 <CBaseSelect items={divisions} placeholder="Select Your Division" onValueChange={field.onChange} defaultValue={field.value} />
                                             </FormControl>
-                                            <FormMessage />
+                                            <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
                                     )}
                                 />
@@ -167,12 +167,12 @@ export function RegisterForm() {
                                     control={form.control}
                                     name="township"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Township</FormLabel>
+                                        <FormItem className="space-y-0">
+                                            <FormLabel className="text-base inline-block mb-1 !text-black">Township</FormLabel>
                                             <FormControl>
                                                 <CBaseSelect items={townships} placeholder="Select Your Township" onValueChange={field.onChange} defaultValue={field.value} />
                                             </FormControl>
-                                            <FormMessage />
+                                            <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
                                     )}
                                 />
@@ -180,12 +180,12 @@ export function RegisterForm() {
                                     control={form.control}
                                     name="cityVillage"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>City & Village</FormLabel>
+                                        <FormItem className="space-y-0">
+                                            <FormLabel className="text-base inline-block mb-1 !text-black">City & Village</FormLabel>
                                             <FormControl>
-                                                <Input className="text-sm" placeholder="Enter your City & Village" {...field} />
+                                                <Input className="!text-base" placeholder="Enter your City & Village" {...field} />
                                             </FormControl>
-                                            <FormMessage />
+                                            <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
                                     )}
                                 />
@@ -193,12 +193,12 @@ export function RegisterForm() {
                                     control={form.control}
                                     name="streetRoad"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Street / Road</FormLabel>
+                                        <FormItem className="space-y-0">
+                                            <FormLabel className="text-base inline-block mb-1 !text-black">Street / Road</FormLabel>
                                             <FormControl>
-                                                <Input className="text-sm" placeholder="Enter your Street / Road" {...field} />
+                                                <Input className="!text-base" placeholder="Enter your Street / Road" {...field} />
                                             </FormControl>
-                                            <FormMessage />
+                                            <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
                                     )}
                                 />
@@ -206,12 +206,12 @@ export function RegisterForm() {
                                     control={form.control}
                                     name="no"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>No.</FormLabel>
+                                        <FormItem className="space-y-0">
+                                            <FormLabel className="text-base inline-block mb-1 !text-black">No.</FormLabel>
                                             <FormControl>
-                                                <Input className="text-sm" placeholder="Enter your City & Village" {...field} />
+                                                <Input className="!text-base" placeholder="Enter your City & Village" {...field} />
                                             </FormControl>
-                                            <FormMessage />
+                                            <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
                                     )}
                                 />
@@ -219,12 +219,12 @@ export function RegisterForm() {
                                     control={form.control}
                                     name="shopName"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Shop Name</FormLabel>
+                                        <FormItem className="space-y-0">
+                                            <FormLabel className="text-base inline-block mb-1 !text-black">Shop Name</FormLabel>
                                             <FormControl>
-                                                <Input className="text-sm" placeholder="Enter your Shop Name" {...field} />
+                                                <Input className="!text-base" placeholder="Enter your Shop Name" {...field} />
                                             </FormControl>
-                                            <FormMessage />
+                                            <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
                                     )}
                                 />
@@ -232,15 +232,15 @@ export function RegisterForm() {
                                     control={form.control}
                                     name="image"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Image</FormLabel>
+                                        <FormItem className="space-y-0">
+                                            <FormLabel className="text-base inline-block mb-1 !text-black">Image</FormLabel>
                                             <FormControl>
                                                 {/* <CPhoneNumberInput placeholder="Enter your phone number" onValueChange={field.onChange} defaultValue={field.value} /> */}
-                                                <div className="w-auto min-h-[200px] max-h-[300px] border rounded flex justify-center items-center">
+                                                <div className="w-auto min-h-[200px] h-[264px] border rounded flex justify-center items-center">
                                                     <CImageDropZone onValueChange={field.onChange} />
                                                 </div>
                                             </FormControl>
-                                            <FormMessage />
+                                            <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
                                     )}
                                 />
@@ -255,12 +255,12 @@ export function RegisterForm() {
                                         control={form.control}
                                         name="ownerName"
                                         render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Owner Name</FormLabel>
+                                            <FormItem className="space-y-0">
+                                                <FormLabel className="text-base inline-block mb-1 !text-black">Owner Name</FormLabel>
                                                 <FormControl>
-                                                    <Input className="text-sm" placeholder="Enter your Owner Name" {...field} />
+                                                    <Input className="!text-base" placeholder="Enter your Owner Name" {...field} />
                                                 </FormControl>
-                                                <FormMessage />
+                                                <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                             </FormItem>
                                         )}
                                     />
@@ -268,12 +268,12 @@ export function RegisterForm() {
                                         control={form.control}
                                         name="phoneNumber"
                                         render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Phone Number</FormLabel>
+                                            <FormItem className="space-y-0">
+                                                <FormLabel className="text-base inline-block mb-1 !text-black">Phone Number</FormLabel>
                                                 <FormControl>
                                                     <CPhoneNumberInput placeholder="Enter your phone number" onValueChange={field.onChange} defaultValue={field.value} />
                                                 </FormControl>
-                                                <FormMessage />
+                                                <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                             </FormItem>
                                         )}
                                     />
@@ -286,12 +286,12 @@ export function RegisterForm() {
                                         control={form.control}
                                         name="applicant"
                                         render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Applicant</FormLabel>
+                                            <FormItem className="space-y-0">
+                                                <FormLabel className="text-base inline-block mb-1 !text-black">Applicant</FormLabel>
                                                 <FormControl>
                                                     <CBaseSelect items={applicants} placeholder="Select Your Applicant" onValueChange={field.onChange} defaultValue={field.value} />
                                                 </FormControl>
-                                                <FormMessage />
+                                                <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                             </FormItem>
                                         )}
                                     />
@@ -299,12 +299,12 @@ export function RegisterForm() {
                                         control={form.control}
                                         name="applicantName"
                                         render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Applicant Name</FormLabel>
+                                            <FormItem className="space-y-0">
+                                                <FormLabel className="text-base inline-block mb-1 !text-black">Applicant Name</FormLabel>
                                                 <FormControl>
-                                                    <Input className="text-sm" placeholder="Enter Applicant Name" {...field} />
+                                                    <Input className="!text-base" placeholder="Enter Applicant Name" {...field} />
                                                 </FormControl>
-                                                <FormMessage />
+                                                <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                             </FormItem>
                                         )}
                                     />
@@ -326,7 +326,7 @@ export function RegisterForm() {
                                         />
                                     </FormControl>
                                     <div className="space-y-1 leading-none">
-                                        <FormLabel>
+                                        <FormLabel className="text-sm leading-5 inline-block mb-1 !text-black">
                                             I agree to the <Link className="text-primary underline" href="www.google.com">Terms and Conditions</Link>, <Link className="text-primary underline" href="www.google.com">Privacy Policy</Link>, <Link className="text-primary underline" href="www.google.com">License Agreement</Link>
                                         </FormLabel>
                                     </div>

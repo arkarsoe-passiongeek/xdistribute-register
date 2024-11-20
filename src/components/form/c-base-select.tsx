@@ -23,19 +23,21 @@ interface CBaseSelectProps {
 export function CBaseSelect({ items, placeholder, ...rest }: CBaseSelectProps) {
     return (
         <Select {...rest}>
-            <SelectTrigger>
+            <SelectTrigger className="text-base">
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent>
-                <SelectGroup className="p-1">
-                    <SelectLabel className="p-0 mb-3">{placeholder}</SelectLabel>
-                    {
-                        items.map(item => {
-                            return (
-                                <SelectItem key={item.value} value={item.value}>{item.label}</SelectItem>
-                            )
-                        })
-                    }
+                <SelectGroup className="p-[15px]">
+                    <SelectLabel className="p-0 mb-[15px] text-lg font-medium">{placeholder}</SelectLabel>
+                    <div className="space-y-[10px]">
+                        {
+                            items.map(item => {
+                                return (
+                                    <SelectItem className="text-base" key={item.value} value={item.value}>{item.label}</SelectItem>
+                                )
+                            })
+                        }
+                    </div>
                 </SelectGroup>
             </SelectContent>
         </Select>

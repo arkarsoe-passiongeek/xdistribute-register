@@ -27,16 +27,19 @@ export default function CPhoneNumberInput({ placeholder, onValueChange }: CPhone
     const [dialogOpen, setDialogOpen] = useState(false)
     const [selectedCountry, setSelectedCountry] = useState({
         flag: mm,
+        name: "Myanmar",
         number: 95
     },)
 
     const phoneNumbers = [
         {
             flag: mm,
+            name: "Myanmar",
             number: 95
         },
         {
             flag: gb,
+            name: "United Kingdom",
             number: 111
         }
     ]
@@ -54,12 +57,12 @@ export default function CPhoneNumberInput({ placeholder, onValueChange }: CPhone
 
     return (
         <div className="space-y-2" dir="ltr">
-            <div className="flex justify-between border border-input rounded px-[8px] h-full gap-1">
+            <div className="flex justify-between border border-input rounded px-[8px] h-full">
                 <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                     <DialogTrigger asChild>
-                        <div className="flex flex-nowrap items-center gap-1 w-[70px]">
+                        <div className="flex flex-nowrap items-center w-[50px] shrink-0">
                             <Image src={selectedCountry.flag} height={16} width={24} alt="country flag" className="cursor-pointer" />
-                            <span className="text-[#000] text-sm">+ {selectedCountry.number}</span>
+                            <span className="text-[#000] text-sm">+{selectedCountry.number}</span>
                         </div>
                     </DialogTrigger>
                     <DialogContent className={"w-[80%] lg:max-w-screen-lg rounded border-c-contrast overflow-y-scroll max-h-screen"}>
@@ -70,18 +73,19 @@ export default function CPhoneNumberInput({ placeholder, onValueChange }: CPhone
                             {phoneNumbers.map(each => {
                                 return (
                                     <div key={each.number} onClick={() => onCountrySelect(each)} className={`p-[8px] rounded flex justify-between hover:bg-primary ${selectedCountry.number === each.number ? 'bg-c-primary' : ''}`}>
-                                        <Image src={each.flag} height={16} width={30} alt="country flag" />
-                                        <span className="text-sm">{each.number}</span>
+                                        {/* <Image src={each.flag} height={16} width={30} alt="country flag" /> */}
+                                        <span className={`text-base ${selectedCountry.number === each.number ? 'text-white-1' : ''}`}>{each.name}</span>
+                                        <span className={`text-base ${selectedCountry.number === each.number ? 'text-white-1' : ''}`}>{each.number}</span>
                                     </div>
                                 )
                             })}
                         </div>
                     </DialogContent>
                 </Dialog>
-                <div className="w-[1px] my-2 h-[25px] bg-c-contrast">
+                <div className="w-[1px] my-2 mx-[8px] h-[25px] bg-c-contrast shrink-0">
                 </div>
                 <Input
-                    className="border-0 outline-none focus:ring-0 w-full focus-visible:ring-0 focus-visible:ring-offset-0 p-0 h-10 text-sm"
+                    className="!text-base border-0 outline-none focus:ring-0 w-full focus-visible:ring-0 focus-visible:ring-offset-0 p-0 h-10"
                     placeholder={placeholder}
                     onChange={onInputChange}
                     defaultValue={inputValue}

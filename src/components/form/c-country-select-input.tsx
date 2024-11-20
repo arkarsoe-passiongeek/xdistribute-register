@@ -77,20 +77,22 @@ export default function CCountrySelectInput({ placeholder, ...rest }: CCountrySe
         <Select {...rest}>
             <SelectTrigger
                 id="select-country"
-                className="[&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 [&>span_svg]:text-muted-foreground/80"
+                className="text-base [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 [&>span_svg]:text-muted-foreground/80"
             >
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent className="[&_*[role=option]>span>svg]:shrink-0 [&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2">
                 {countries.map((continent) => (
-                    <SelectGroup className="p-1" key={continent.continent}>
-                        <SelectLabel className="p-0 mb-3">Select Your Country</SelectLabel>
-                        {continent.items.map((item) => (
-                            <SelectItem key={item.value} value={item.value}>
-                                <Image src={item.flag} width={27} height={18} alt="country flag" />
-                                <span className="truncate">{item.label}</span>
-                            </SelectItem>
-                        ))}
+                    <SelectGroup className="p-[15px]" key={continent.continent}>
+                        <SelectLabel className="p-0 mb-[15px] text-lg font-medium">Select Your Country</SelectLabel>
+                        <div className="space-y-[10px]">
+                            {continent.items.map((item) => (
+                                <SelectItem key={item.value} value={item.value}>
+                                    <Image src={item.flag} width={27} height={18} alt="country flag" />
+                                    <span className="truncate text-base">{item.label}</span>
+                                </SelectItem>
+                            ))}
+                        </div>
                     </SelectGroup>
                 ))}
             </SelectContent>
