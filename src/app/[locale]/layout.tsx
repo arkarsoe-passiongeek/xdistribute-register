@@ -52,7 +52,6 @@ export default async function LocaleLayout({
                                 </div>
                             </div>
                             <Footer />
-
                         </div>
                     </div>
                 </NextIntlClientProvider>
