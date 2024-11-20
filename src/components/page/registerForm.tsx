@@ -22,6 +22,7 @@ import { Checkbox } from "../ui/checkbox"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import CImageDropZone from "../custom/c-image-dropzone"
+import { useCallback } from "react"
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_MIME_TYPES = [
@@ -64,8 +65,8 @@ const formSchema = z.object({
         message: "applicant must be at least 2 characters.",
     }),
     applicantName: z.string().min(2, {
-        message: "applicant must be at least 2 characters.",
-    }),
+        message: "applicant name must be at least 2 characters.",
+    }).optional(),
     policyAgreement: z.boolean(),
     image: z
         .any()
@@ -94,8 +95,12 @@ const townships = [
 
 const applicants = [
     {
-        label: 'applicant one',
-        value: 'applicant-one'
+        label: 'MySelf',
+        value: 'myself'
+    },
+    {
+        label: 'Behalf',
+        value: 'behalf'
     }
 ]
 
@@ -308,7 +313,6 @@ export function RegisterForm() {
                                             </FormItem>
                                         )}
                                     />
-
                                 </div>
                             </div>
                         </div>

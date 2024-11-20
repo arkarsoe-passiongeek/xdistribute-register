@@ -50,6 +50,7 @@ export default function CImageDropZone({ onValueChange }: CImageDropZoneProps) {
 
     const onCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
+        // e.preventDefault()
         setDroppable(false)
         setSelectedImage('')
     }
@@ -72,7 +73,7 @@ export default function CImageDropZone({ onValueChange }: CImageDropZoneProps) {
                             <>
                                 <Image className='w-[35px] h-[35px]' src={cloudUpload} alt='Cloud Upload logo' />
                                 <p className='text-base'>Drug & Drop Files or Browser</p>
-                                <Button className='rounded hover:bg-c-hover'>Upload Photo</Button>
+                                <Button type='button' className='rounded hover:bg-c-hover'>Upload Photo</Button>
                             </>
                         )
                     }
@@ -90,7 +91,7 @@ export default function CImageDropZone({ onValueChange }: CImageDropZoneProps) {
                                     <img className='w-[107px]' src={`data:image/png;base64,${selectedImage}`} alt="" />
                                     <div className='flex gap-[10px]'>
                                         {/* <Button className='rounded w-[130px] hover:bg-c-hover'>Upload Photo</Button> */}
-                                        <Button onClick={onCancel} className='rounded w-[130px] bg-c-border-stork text-black'>Cancel</Button>
+                                        <Button type='button' onClick={onCancel} className='rounded w-[130px] bg-c-border-stork text-black'>Cancel</Button>
                                     </div>
                                 </div>
                             </div>
