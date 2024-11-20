@@ -12,7 +12,7 @@ export default function CBaseInput({ id, label, ...rest }: CBaseInputProp) {
     return (
         <div className="space-y-2">
             <CFormLabel id={id}>{label}</CFormLabel>
-            <Input className="text-sm lg:text-base" id={id} {...rest} />
+            <Input className="text-sm lg:text-base placeholder:text-c-contrast" id={id} {...rest} />
         </div>
     );
 }

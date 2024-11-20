@@ -19,7 +19,7 @@ const countries = [
         continent: "Global",
         items: [
             { value: "gb", label: "United Kingdom", flag: gb },
-            { value: "mm", label: "Myanmar", flag: mm },
+            { value: "mm", label: "မြန်မာ", flag: mm },
             { value: "th", label: "Thailand", flag: th },
             { value: "my", label: "Malaysia", flag: my },
             { value: "sg", label: "Singapore", flag: sg }
@@ -77,7 +77,7 @@ export default function CCountrySelectInput({ placeholder, ...rest }: CCountrySe
         <Select {...rest}>
             <SelectTrigger
                 id="select-country"
-                className="text-base [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 [&>span_svg]:text-muted-foreground/80"
+                className="text-base text-c-contrast [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 [&>span_svg]:text-muted-foreground/80"
             >
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>

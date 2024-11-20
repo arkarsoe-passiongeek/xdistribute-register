@@ -27,14 +27,14 @@ export default function CPhoneNumberInput({ placeholder, onValueChange }: CPhone
     const [dialogOpen, setDialogOpen] = useState(false)
     const [selectedCountry, setSelectedCountry] = useState({
         flag: mm,
-        name: "Myanmar",
+        name: "မြန်မာ",
         number: 95
     },)
 
     const phoneNumbers = [
         {
             flag: mm,
-            name: "Myanmar",
+            name: "မြန်မာ",
             number: 95
         },
         {
@@ -85,7 +85,7 @@ export default function CPhoneNumberInput({ placeholder, onValueChange }: CPhone
                 <div className="w-[1px] my-2 mx-[8px] h-[25px] bg-c-contrast shrink-0">
                 </div>
                 <Input
-                    className="!text-base border-0 outline-none focus:ring-0 w-full focus-visible:ring-0 focus-visible:ring-offset-0 p-0 h-10"
+                    className="!text-base border-0 outline-none focus:ring-0 w-full focus-visible:ring-0 focus-visible:ring-offset-0 p-0 h-10 placeholder:text-c-contrast"
                     placeholder={placeholder}
                     onChange={onInputChange}
                     defaultValue={inputValue}

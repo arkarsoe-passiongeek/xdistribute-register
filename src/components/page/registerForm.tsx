@@ -187,7 +187,7 @@ export function RegisterForm() {
                                         <FormItem className="space-y-0">
                                             <FormLabel className="text-base inline-block mb-1 !text-black">City & Village</FormLabel>
                                             <FormControl>
-                                                <Input className="!text-base" placeholder="Enter your City & Village" {...field} />
+                                                <Input className="!text-base placeholder:text-c-contrast" placeholder="Enter your City & Village" {...field} />
                                             </FormControl>
                                             <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
@@ -200,7 +200,7 @@ export function RegisterForm() {
                                         <FormItem className="space-y-0">
                                             <FormLabel className="text-base inline-block mb-1 !text-black">Street / Road</FormLabel>
                                             <FormControl>
-                                                <Input className="!text-base" placeholder="Enter your Street / Road" {...field} />
+                                                <Input className="!text-base placeholder:text-c-contrast" placeholder="Enter your Street / Road" {...field} />
                                             </FormControl>
                                             <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
@@ -213,7 +213,7 @@ export function RegisterForm() {
                                         <FormItem className="space-y-0">
                                             <FormLabel className="text-base inline-block mb-1 !text-black">No.</FormLabel>
                                             <FormControl>
-                                                <Input className="!text-base" placeholder="Enter your City & Village" {...field} />
+                                                <Input className="!text-base placeholder:text-c-contrast" placeholder="Enter your City & Village" {...field} />
                                             </FormControl>
                                             <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
@@ -226,7 +226,7 @@ export function RegisterForm() {
                                         <FormItem className="space-y-0">
                                             <FormLabel className="text-base inline-block mb-1 !text-black">Shop Name</FormLabel>
                                             <FormControl>
-                                                <Input className="!text-base" placeholder="Enter your Shop Name" {...field} />
+                                                <Input className="!text-base placeholder:text-c-contrast" placeholder="Enter your Shop Name" {...field} />
                                             </FormControl>
                                             <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                         </FormItem>
@@ -262,7 +262,7 @@ export function RegisterForm() {
                                             <FormItem className="space-y-0">
                                                 <FormLabel className="text-base inline-block mb-1 !text-black">Owner Name</FormLabel>
                                                 <FormControl>
-                                                    <Input className="!text-base" placeholder="Enter your Owner Name" {...field} />
+                                                    <Input className="!text-base placeholder:text-c-contrast" placeholder="Enter your Owner Name" {...field} />
                                                 </FormControl>
                                                 <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                             </FormItem>
@@ -308,7 +308,7 @@ export function RegisterForm() {
                                                     <FormItem className="space-y-0">
                                                         <FormLabel className="text-base inline-block mb-1 !text-black">Applicant Name</FormLabel>
                                                         <FormControl>
-                                                            <Input className="!text-base" placeholder="Enter Applicant Name" {...field} />
+                                                            <Input className="!text-base placeholder:text-c-contrast" placeholder="Enter Applicant Name" {...field} />
                                                         </FormControl>
                                                         <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                                     </FormItem>
@@ -343,7 +343,7 @@ export function RegisterForm() {
                         />
                     </div>
                     <div className="w-full flex justify-center">
-                        <Button className="!text-base w-full lg:w-[500px] lg:mx-auto hover:bg-c-hover" type="submit">Register</Button>
+                        <Button className="!text-lg p-[14px] w-full h-[52px] lg:w-[500px] lg:mx-auto hover:bg-c-hover" type="submit">Register</Button>
                     </div>
                 </form>
             </Form>

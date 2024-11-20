@@ -23,7 +23,7 @@ const LanguageSelectDialog = ({ params: { locale } }: { params: { locale: string
     const languages =
         [
             { value: "en", label: "English" },
-            { value: "mm", label: "Myanmar" },
+            { value: "mm", label: "မြန်မာ" },
             { value: "my", label: "Malaysia" },
             { value: "sg", label: "Singapore" }
         ]
