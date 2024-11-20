@@ -22,7 +22,6 @@ import { Checkbox } from "../ui/checkbox"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import CImageDropZone from "../custom/c-image-dropzone"
-import { useCallback } from "react"
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_MIME_TYPES = [
