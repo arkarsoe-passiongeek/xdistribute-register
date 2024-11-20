@@ -339,9 +339,9 @@ export function RegisterForm() {
                     </div>
                 </form>
             </Form>
-            <div>
+            {/* <div>
                 {JSON.stringify(form.getValues())}
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -15,7 +15,6 @@ import {
 import mm from "../../../public/assets/images/countries/mm.png"
 import gb from "../../../public/assets/images/countries/gb.png"
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator"
 
 interface CPhoneNumberInput extends React.InputHTMLAttributes<HTMLInputElement> {
     placeholder: string
@@ -55,11 +54,11 @@ export default function CPhoneNumberInput({ placeholder, onValueChange }: CPhone
 
     return (
         <div className="space-y-2" dir="ltr">
-            <div className="flex justify-between border border-input rounded px-[8px]">
+            <div className="flex justify-between border border-input rounded px-[8px] h-full gap-1">
                 <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                     <DialogTrigger asChild>
-                        <div className="flex flex-nowrap items-center gap-1 w-[100px]">
-                            <Image src={selectedCountry.flag} height={16} width={24} alt="country flag" />
+                        <div className="flex flex-nowrap items-center gap-1 w-[70px]">
+                            <Image src={selectedCountry.flag} height={16} width={24} alt="country flag" className="cursor-pointer" />
                             <span className="text-[#000] text-sm">+ {selectedCountry.number}</span>
                         </div>
                     </DialogTrigger>
@@ -79,7 +78,8 @@ export default function CPhoneNumberInput({ placeholder, onValueChange }: CPhone
                         </div>
                     </DialogContent>
                 </Dialog>
-                <Separator orientation="vertical" className="h-[10px]" />
+                <div className="w-[1px] my-2 h-[25px] bg-c-contrast">
+                </div>
                 <Input
                     className="border-0 outline-none focus:ring-0 w-full focus-visible:ring-0 focus-visible:ring-offset-0 p-0 h-10 text-sm"
                     placeholder={placeholder}

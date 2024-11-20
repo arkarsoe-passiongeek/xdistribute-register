@@ -47,7 +47,7 @@ export default async function LocaleLayout({
                         <div className="bg-white-2 h-full w-full">
                             <div>
                                 <Navbar params={{ locale }} />
-                                <div>
+                                <div className='mt-[95px] md:mt-[100px]'>
                                     {children}
                                 </div>
                             </div>
