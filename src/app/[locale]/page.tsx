@@ -23,7 +23,7 @@ const Home = async ({ params }: { params: Promise<{ locale: string }> }) => {
     setRequestLocale(locale);
 
     return (
-        <div className="container max-w-[1420px] px-[17px] md:px-[40px] mx-auto">
+        <div className="container max-w-[1420px] px-[25px] md:px-[20px] lg:px-[46px] mx-auto">
             <div className="bg-white-1 rounded mb-[24px] p-[20px] lg:p-[40px] shadow">
                 <RegisterForm />
             </div>

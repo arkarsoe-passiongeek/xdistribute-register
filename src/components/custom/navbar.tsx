@@ -8,8 +8,8 @@ export const revalidate = 0;
 
 const Navbar = async ({ params: { locale } }: { params: { locale: string } }) => {
     return (
-        <div className="fixed top-0 shadow-sm bg-white-1 px-[25px] w-full max-w-full mx-auto">
-            <div className="container mx-auto">
+        <div className="fixed top-0 shadow-sm bg-white-1 w-full max-w-full mx-auto">
+            <div className="container max-w-[1420px] px-[25px] md:-[20px] lg:px-[46px] mx-auto">
                 <div className="relative w-full py-[18px] flex items-center justify-center">
                     <Link href="/">
                         <Image
