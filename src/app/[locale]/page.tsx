@@ -1,4 +1,3 @@
-import CImageDropZone from "@/components/custom/c-image-dronzone";
 import { RegisterForm } from "@/components/page/registerForm"
 import { routing } from '@/i18n/routing';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -24,11 +23,8 @@ const Home = async ({ params }: { params: Promise<{ locale: string }> }) => {
     setRequestLocale(locale);
 
     return (
-        <div className="container px-[17px] md:px-[20px] mx-auto">
+        <div className="container max-w-[1420px] px-[17px] md:px-[40px] mx-auto">
             <div className="bg-white-1 rounded my-[24px] p-[20px] lg:p-[40px] shadow">
-                <div className="w-[655px] h-[300px] border rounded flex justify-center items-center">
-                    <CImageDropZone />
-                </div>
                 <RegisterForm />
             </div>
         </div>

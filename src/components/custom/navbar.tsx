@@ -9,13 +9,16 @@ export const revalidate = 0;
 const Navbar = async ({ params: { locale } }: { params: { locale: string } }) => {
     return (
         <div className="shadow-sm bg-white-1">
-            <div className="container px-[25px] mx-auto">
+            <div className="container max-w-[1420px] px-[25px] mx-auto">
                 <div className="relative w-full py-[18px] flex items-center justify-center">
                     <Link href="/">
                         <Image
                             src={logoImage}
                             className="w-[91px] h-[40px]"
-                            // layout="responsive"
+                            width={91}
+                            height={40}
+                            sizes="(max-width: 91px) 100vw, 50vw"  // Dynamic width based on screen size
+                            quality={75}
                             alt="Logo of the company"
                         />
                     </Link>

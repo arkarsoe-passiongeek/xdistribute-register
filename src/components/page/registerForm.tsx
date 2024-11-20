@@ -21,6 +21,16 @@ import CPhoneNumberInput from "../form/c-phone-number-input"
 import { Checkbox } from "../ui/checkbox"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
+import CImageDropZone from "../custom/c-image-dropzone"
+
+const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const ACCEPTED_IMAGE_MIME_TYPES = [
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+    "image/webp",
+];
+// const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
 
 const formSchema = z.object({
     country: z.string().min(2, {
@@ -57,6 +67,15 @@ const formSchema = z.object({
         message: "applicant must be at least 2 characters.",
     }),
     policyAgreement: z.boolean(),
+    image: z
+        .any()
+        .refine((files) => {
+            return files?.[0]?.size <= MAX_FILE_SIZE;
+        }, `Max image size is 5MB.`)
+        .refine(
+            (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+            "Only .jpg, .jpeg, .png and .webp formats are supported."
+        ),
 })
 
 const divisions = [
@@ -97,7 +116,8 @@ export function RegisterForm() {
             township: "",
             applicant: "",
             applicantName: "",
-            policyAgreement: false
+            policyAgreement: false,
+            image: ""
         },
     })
 
@@ -208,6 +228,23 @@ export function RegisterForm() {
                                         </FormItem>
                                     )}
                                 />
+                                <FormField
+                                    control={form.control}
+                                    name="image"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Image</FormLabel>
+                                            <FormControl>
+                                                {/* <CPhoneNumberInput placeholder="Enter your phone number" onValueChange={field.onChange} defaultValue={field.value} /> */}
+                                                <div className="w-auto min-h-[200px] max-h-[300px] border rounded flex justify-center items-center">
+                                                    <CImageDropZone onValueChange={field.onChange} />
+                                                </div>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
                             </div>
                         </div>
                         <div className="space-y-[30px]">
@@ -303,7 +340,7 @@ export function RegisterForm() {
                 </form>
             </Form>
             <div>
-                {/* {JSON.stringify(form.getValues())} */}
+                {JSON.stringify(form.getValues())}
             </div>
         </div>
     )

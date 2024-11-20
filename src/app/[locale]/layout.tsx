@@ -44,7 +44,7 @@ export default async function LocaleLayout({
             <body className={poppins.className}>
                 <NextIntlClientProvider messages={messages}>
                     <div className="flex flex-col justify-between">
-                        <div className="bg-white-2 h-full">
+                        <div className="bg-white-2 h-full w-full">
                             <div>
                                 <Navbar params={{ locale }} />
                                 <div>
