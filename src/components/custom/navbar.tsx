@@ -14,10 +14,7 @@ const Navbar = async ({ params: { locale } }: { params: { locale: string } }) =>
                     <Link href="/">
                         <Image
                             src={logoImage}
-                            className="w-[91px] h-[40px]"
-                            width={91}
-                            height={40}
-                            sizes="(max-width: 91px) 100vw, 50vw"  // Dynamic width based on screen size
+                            className="w-[91px] md:w-[138px] h-[40px] md:h-[60px]"
                             quality={75}
                             alt="Logo of the company"
                         />

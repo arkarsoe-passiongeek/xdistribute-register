@@ -134,7 +134,7 @@ export function RegisterForm() {
 
     return (
         <div>
-            <h1 className="text-primary text-center font-bold text-lg mb-[30px] lg:text-3xl">{t('title')}</h1>
+            <h1 className="text-primary text-center font-bold text-xl mb-[30px] lg:text-3xl">{t('title')}</h1>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <div className="space-y-[30px] lg:space-y-0 lg:mt-[30px] grid grid-cols-1 lg:grid-cols-2 lg:gap-[30px]">
@@ -299,19 +299,24 @@ export function RegisterForm() {
                                             </FormItem>
                                         )}
                                     />
-                                    <FormField
-                                        control={form.control}
-                                        name="applicantName"
-                                        render={({ field }) => (
-                                            <FormItem className="space-y-0">
-                                                <FormLabel className="text-base inline-block mb-1 !text-black">Applicant Name</FormLabel>
-                                                <FormControl>
-                                                    <Input className="!text-base" placeholder="Enter Applicant Name" {...field} />
-                                                </FormControl>
-                                                <FormMessage className="!text-sm inline-block !mt-[2px]" />
-                                            </FormItem>
-                                        )}
-                                    />
+                                    {
+                                        form.watch('applicant') === "behalf" && (
+                                            <FormField
+                                                control={form.control}
+                                                name="applicantName"
+                                                render={({ field }) => (
+                                                    <FormItem className="space-y-0">
+                                                        <FormLabel className="text-base inline-block mb-1 !text-black">Applicant Name</FormLabel>
+                                                        <FormControl>
+                                                            <Input className="!text-base" placeholder="Enter Applicant Name" {...field} />
+                                                        </FormControl>
+                                                        <FormMessage className="!text-sm inline-block !mt-[2px]" />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                        )
+                                    }
+
                                 </div>
                             </div>
                         </div>
@@ -338,7 +343,7 @@ export function RegisterForm() {
                         />
                     </div>
                     <div className="w-full flex justify-center">
-                        <Button className="w-full lg:w-[500px] lg:mx-auto hover:bg-c-hover" type="submit">Register</Button>
+                        <Button className="!text-base w-full lg:w-[500px] lg:mx-auto hover:bg-c-hover" type="submit">Register</Button>
                     </div>
                 </form>
             </Form>

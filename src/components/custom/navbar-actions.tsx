@@ -40,8 +40,8 @@ const LanguageSelectDialog = ({ params: { locale } }: { params: { locale: string
         <Dialog>
             <DialogTrigger asChild>
                 <CBaseButton variant="outline" className="border-primary px-4 h-auto py-[6px] hover:bg-c-hover">
-                    <Image width={21} height={16} src={languageButtonLogo} alt="language button logo" />
-                    <p className="mb-0 text-sm">{getSelectedLanguage().label}</p>
+                    <Image className="w-[21px] h-[16px]" src={languageButtonLogo} alt="language button logo" />
+                    <p className="mb-0 text-base">{getSelectedLanguage().label}</p>
                 </CBaseButton>
             </DialogTrigger>
             <DialogContent className={"w-[80%] lg:max-w-screen-md rounded border-c-contrast overflow-y-scroll max-h-screen items-start gap-[15px] lg:gap-[30px]"}>
