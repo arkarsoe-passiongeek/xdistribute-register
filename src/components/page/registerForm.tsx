@@ -22,6 +22,10 @@ import { Checkbox } from "../ui/checkbox"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import CImageDropZone from "../custom/c-image-dropzone"
+import { useState } from "react"
+import { CAlertDialog } from "../custom/success-alert-dialog"
+import Image from "next/image"
+import successLogo from "../../../public/assets/images/logo/success-logo.png"
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_MIME_TYPES = [
@@ -104,6 +108,8 @@ const applicants = [
 ]
 
 export function RegisterForm() {
+    const [successModal, setSuccessModal] = useState(false)
+
     const t = useTranslations('Register');
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
@@ -347,9 +353,19 @@ export function RegisterForm() {
                     </div>
                 </form>
             </Form>
-            {/* <div>
-                {JSON.stringify(form.getValues())}
-            </div> */}
+            <CAlertDialog title="Successfully Registered" description="Check Your Phone for appealable code. We’ll see you soon" isOpen={successModal} onClose={() => setSuccessModal(false)}>
+                <div className="h-[311px] p-[25px]">
+                    <div className="text-center flex flex-col space-y-[15px] items-center">
+                        <div className="flex justify-center items-center w-[80px] h-[80px]">
+                            <Image className='w-[65px] h-[65px]' src={successLogo} alt='Success Mark logo' />
+                        </div>
+                        <h1 className="text-xl text-c-success font-semibold">Successful</h1>
+                        <p className="max-w-[309px] text-base text-c-contrast">Check Your Phone for appealable code. We’ll see you soon</p>
+                        <Button className="!text-base w-full h-[50px] hover:bg-c-hover" type="button" onClick={() => setSuccessModal(false)}>Return</Button>
+                    </div>
+                </div>
+            </CAlertDialog>
+
         </div>
     )
 }

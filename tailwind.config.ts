@@ -76,6 +76,7 @@ export default {
 				"c-contrast": 'var(--contrast)',
 				"c-primary": 'hsl(var(--primary))',
 				"c-border-stork": 'var(--border-stork)',
+				"c-success": 'var(--c-success)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

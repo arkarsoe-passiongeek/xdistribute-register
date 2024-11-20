@@ -34,7 +34,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.3rem;
 
-    /* custom setted colors */
+    /* custom set colors */
     --text: #010101;
     --contrast: #9E9E9E;
     --white-1: #FFFFFF;
@@ -43,6 +43,8 @@ body {
     --hover: #B40E15;
     --border-stork: #E8E8E8;
     --ring: 357, 88%, 54%;
+    --c-success: #03E92D;
+
   }
 
   .dark {
