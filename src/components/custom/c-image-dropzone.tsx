@@ -65,7 +65,7 @@ export default function CImageDropZone({ onValueChange }: CImageDropZoneProps) {
 
     return (
         <div {...getRootProps()} className='w-full h-full rounded ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'>
-            <label htmlFor="imageUpload"></label>
+            <label className='hidden' htmlFor="imageUpload">Image Upload</label>
             <input id="imageUpload" {...getInputProps()} />
             <div className='w-full h-full'>
                 <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} className='space-y-[10px] flex flex-col items-center justify-center w-full h-full'>

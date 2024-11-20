@@ -76,6 +76,7 @@ export default function CCountrySelectInput({ placeholder, ...rest }: CCountrySe
     return (
         <Select {...rest}>
             <SelectTrigger
+                aria-label="select-country-button"
                 id="select-country"
                 className="text-base text-c-contrast [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 [&>span_svg]:text-muted-foreground/80"
             >

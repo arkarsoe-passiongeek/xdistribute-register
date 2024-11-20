@@ -9,6 +9,10 @@ import "./globals.css"
 
 import { Poppins } from 'next/font/google'
 
+type LangMap = {
+    [key: string]: string; // or more specifically, you can define known locales like 'en', 'my', etc.
+};
+
 const poppins = Poppins({
     weight: ['400', '500', '700'],
     subsets: ['latin'],
@@ -39,8 +43,12 @@ export default async function LocaleLayout({
     // side is the easiest way to get started
     const messages = await getMessages();
 
+    const lang: LangMap = {
+        'mm': 'my-MM'
+    }
+
     return (
-        <html lang={locale}>
+        <html lang={lang[locale]}>
             <body className={poppins.className}>
                 <NextIntlClientProvider messages={messages}>
                     <div className="flex flex-col justify-between">
@@ -56,6 +64,6 @@ export default async function LocaleLayout({
                     </div>
                 </NextIntlClientProvider>
             </body>
-        </html>
+        </html >
     );
 }
