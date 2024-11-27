@@ -19,7 +19,7 @@ const countries = [
         continent: "Global",
         items: [
             { value: "gb", label: "United Kingdom", flag: gb },
-            { value: "mm", label: "မြန်မာ", flag: mm },
+            { value: "mm", label: "Myanmar", flag: mm },
             { value: "th", label: "Thailand", flag: th },
             { value: "my", label: "Malaysia", flag: my },
             { value: "sg", label: "Singapore", flag: sg }
