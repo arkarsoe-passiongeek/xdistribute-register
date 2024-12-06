@@ -372,9 +372,6 @@ export function RegisterForm() {
                         <div className="flex justify-center items-center w-[80px] h-[80px]">
                             <Image className='w-[65px] h-[65px]' src={successLogo} alt='Success Mark logo' />
                         </div>
-                        <div>
-                            {JSON.stringify(responseData)}
-                        </div>
                         <h1 className="text-xl text-c-success font-semibold">Successful</h1>
                         <p className="max-w-[309px] text-base text-c-contrast">Check Your Phone for appealable code. We’ll see you soon</p>
                         <Button className="!text-base w-full h-[50px] hover:bg-c-hover" type="button" onClick={() => setSuccessModal(false)}>Return</Button>
