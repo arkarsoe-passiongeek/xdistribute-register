@@ -20,10 +20,10 @@ interface CBaseSelectProps {
     defaultValue: string;
 }
 
-export function CBaseSelect({ items, placeholder, ...rest }: CBaseSelectProps) {
+export function CBaseSelect({ items, placeholder, defaultValue, ...rest }: CBaseSelectProps) {
     return (
         <Select {...rest}>
-            <SelectTrigger className="text-base text-c-contrast">
+            <SelectTrigger className={`text-base ${defaultValue ? '' : 'text-c-contrast'}`}>
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent>

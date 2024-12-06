@@ -2,8 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
-
+import { setErrorMap, z } from "zod"
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -14,18 +13,19 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import CCountrySelectInput from "../form/c-country-select-input"
-import { CBaseSelect } from "../form/c-base-select"
-import FormSectionTitle from "../form/form-section-title"
-import CPhoneNumberInput from "../form/c-phone-number-input"
-import { Checkbox } from "../ui/checkbox"
+import CCountrySelectInput from "@/components/form/c-country-select-input"
+import { CBaseSelect } from "@/components/form/c-base-select"
+import FormSectionTitle from "@/components/form/form-section-title"
+import CPhone_numberInput from "@/components/form/c-phone-number-input"
+import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
-import CImageDropZone from "../custom/c-image-dropzone"
+import CImageDropZone from "@/components/custom/c-image-dropzone"
 import { useState } from "react"
-import { CAlertDialog } from "../custom/success-alert-dialog"
+import { CAlertDialog } from "@/components/custom/success-alert-dialog"
 import Image from "next/image"
-import successLogo from "../../../public/assets/images/logo/success-logo.png"
+import successLogo from "@/public/assets/images/logo/success-logo.png"
+import { register } from "@/services/actions/register"
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_MIME_TYPES = [
@@ -40,22 +40,22 @@ const formSchema = z.object({
     country: z.string().min(2, {
         message: "Country must be at least 2 characters.",
     }),
-    cityVillage: z.string().min(2, {
+    city_and_village: z.string().min(2, {
         message: "City & Village must be at least 2 characters.",
     }),
-    streetRoad: z.string().min(2, {
+    street_and_road: z.string().min(2, {
         message: "Street Road must be at least 2 characters.",
     }),
     no: z.string().min(2, {
         message: "No must be at least 2 characters.",
     }),
-    shopName: z.string().min(2, {
+    shop_name: z.string().min(2, {
         message: "Shop Name must be at least 2 characters.",
     }),
-    ownerName: z.string().min(2, {
+    owner_name: z.string().min(2, {
         message: "Owner Name must be at least 2 characters.",
     }),
-    phoneNumber: z.string().min(2, {
+    phone_number: z.string().min(2, {
         message: "Phone Number must be at least 2 characters.",
     }),
     division: z.string().min(2, {
@@ -64,22 +64,22 @@ const formSchema = z.object({
     township: z.string().min(2, {
         message: "township must be at least 2 characters.",
     }),
-    applicant: z.string().min(2, {
+    applicant_type: z.string().min(2, {
         message: "applicant must be at least 2 characters.",
     }),
-    applicantName: z.string().min(2, {
+    applicant_name: z.string().min(2, {
         message: "applicant name must be at least 2 characters.",
     }).optional(),
-    policyAgreement: z.boolean(),
+    policy_agreement: z.boolean(),
     image: z
         .any()
-        .refine((files) => {
-            return files?.[0]?.size <= MAX_FILE_SIZE;
-        }, `Max image size is 5MB.`)
-        .refine(
-            (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
-            "Only .jpg, .jpeg, .png and .webp formats are supported."
-        ),
+    // .refine((files) => {
+    //     return files?.[0]?.size <= MAX_FILE_SIZE;
+    // }, `Max image size is 5MB.`)
+    // .refine(
+    //     (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+    //     "Only .jpg, .jpeg, .png and .webp formats are supported."
+    // ),
 })
 
 const divisions = [
@@ -109,6 +109,8 @@ const applicants = [
 
 export function RegisterForm() {
     const [successModal, setSuccessModal] = useState(false)
+    const [responseData, setResponseData] = useState({})
+    const [submitting, setSubmitting] = useState(false)
 
     const t = useTranslations('Register');
     // 1. Define your form.
@@ -116,26 +118,37 @@ export function RegisterForm() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             country: "",
-            cityVillage: "",
-            streetRoad: "",
-            no: "",
-            shopName: "",
-            ownerName: "",
-            phoneNumber: "",
             division: "",
             township: "",
-            applicant: "",
-            applicantName: "",
-            policyAgreement: false,
+            city_and_village: "",
+            street_and_road: "",
+            no: "",
+            shop_name: "",
+            owner_name: "",
+            phone_number: "",
+            applicant_type: "",
+            applicant_name: "",
+            policy_agreement: false,
             image: ""
         },
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        setSubmitting(true)
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values)
+        // console.log(values)
+        const { data, error } = await register(values)
+        if (data) {
+            setResponseData(data)
+            setSuccessModal(true)
+        } else if (error?.data) {
+            setSubmitting(false)
+            for (let key in error.data) {
+                form.setError(key as any, { type: 'manual', message: error.data[key][0] })
+            }
+        }
     }
 
     return (
@@ -188,7 +201,7 @@ export function RegisterForm() {
                                 />
                                 <FormField
                                     control={form.control}
-                                    name="cityVillage"
+                                    name="city_and_village"
                                     render={({ field }) => (
                                         <FormItem className="space-y-0">
                                             <FormLabel className="text-base inline-block mb-1 !text-black">City & Village</FormLabel>
@@ -201,7 +214,7 @@ export function RegisterForm() {
                                 />
                                 <FormField
                                     control={form.control}
-                                    name="streetRoad"
+                                    name="street_and_road"
                                     render={({ field }) => (
                                         <FormItem className="space-y-0">
                                             <FormLabel className="text-base inline-block mb-1 !text-black">Street / Road</FormLabel>
@@ -227,7 +240,7 @@ export function RegisterForm() {
                                 />
                                 <FormField
                                     control={form.control}
-                                    name="shopName"
+                                    name="shop_name"
                                     render={({ field }) => (
                                         <FormItem className="space-y-0">
                                             <FormLabel className="text-base inline-block mb-1 !text-black">Shop Name</FormLabel>
@@ -245,7 +258,7 @@ export function RegisterForm() {
                                         <FormItem className="space-y-0">
                                             <FormLabel className="text-base inline-block mb-1 !text-black">Image</FormLabel>
                                             <FormControl>
-                                                {/* <CPhoneNumberInput placeholder="Enter your phone number" onValueChange={field.onChange} defaultValue={field.value} /> */}
+                                                {/* <CPhone_numberInput placeholder="Enter your phone number" onValueChange={field.onChange} defaultValue={field.value} /> */}
                                                 <div className="w-auto min-h-[200px] h-[264px] border rounded flex justify-center items-center">
                                                     <CImageDropZone onValueChange={field.onChange} />
                                                 </div>
@@ -263,7 +276,7 @@ export function RegisterForm() {
                                 <div className="space-y-[10px] lg:space-y-[20px]">
                                     <FormField
                                         control={form.control}
-                                        name="ownerName"
+                                        name="owner_name"
                                         render={({ field }) => (
                                             <FormItem className="space-y-0">
                                                 <FormLabel className="text-base inline-block mb-1 !text-black">Owner Name</FormLabel>
@@ -276,12 +289,12 @@ export function RegisterForm() {
                                     />
                                     <FormField
                                         control={form.control}
-                                        name="phoneNumber"
+                                        name="phone_number"
                                         render={({ field }) => (
                                             <FormItem className="space-y-0">
                                                 <FormLabel className="text-base inline-block mb-1 !text-black">Phone Number</FormLabel>
                                                 <FormControl>
-                                                    <CPhoneNumberInput placeholder="Enter your phone number" onValueChange={field.onChange} defaultValue={field.value} />
+                                                    <CPhone_numberInput placeholder="Enter your phone number" onValueChange={field.onChange} defaultValue={field.value} />
                                                 </FormControl>
                                                 <FormMessage className="!text-sm inline-block !mt-[2px]" />
                                             </FormItem>
@@ -294,7 +307,7 @@ export function RegisterForm() {
                                 <div className="space-y-[10px] lg:space-y-[20px]">
                                     <FormField
                                         control={form.control}
-                                        name="applicant"
+                                        name="applicant_type"
                                         render={({ field }) => (
                                             <FormItem className="space-y-0">
                                                 <FormLabel className="text-base inline-block mb-1 !text-black">Applicant</FormLabel>
@@ -306,10 +319,10 @@ export function RegisterForm() {
                                         )}
                                     />
                                     {
-                                        form.watch('applicant') === "behalf" && (
+                                        form.watch('applicant_type') === "behalf" && (
                                             <FormField
                                                 control={form.control}
-                                                name="applicantName"
+                                                name="applicant_name"
                                                 render={({ field }) => (
                                                     <FormItem className="space-y-0">
                                                         <FormLabel className="text-base inline-block mb-1 !text-black">Applicant Name</FormLabel>
@@ -330,7 +343,7 @@ export function RegisterForm() {
                     <div className="space-y-[10px] lg:space-y-[20px]">
                         <FormField
                             control={form.control}
-                            name="policyAgreement"
+                            name="policy_agreement"
                             render={({ field }) => (
                                 <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                                     <FormControl>
@@ -349,7 +362,7 @@ export function RegisterForm() {
                         />
                     </div>
                     <div className="w-full flex justify-center">
-                        <Button className="!text-lg p-[14px] w-full h-[52px] lg:w-[500px] lg:mx-auto hover:bg-c-hover" type="submit">Register</Button>
+                        <Button disabled={submitting} className="!text-lg p-[14px] w-full h-[52px] lg:w-[500px] lg:mx-auto hover:bg-c-hover" type="submit">{submitting ? 'Loading' : 'Register'}</Button>
                     </div>
                 </form>
             </Form>
@@ -359,13 +372,15 @@ export function RegisterForm() {
                         <div className="flex justify-center items-center w-[80px] h-[80px]">
                             <Image className='w-[65px] h-[65px]' src={successLogo} alt='Success Mark logo' />
                         </div>
+                        <div>
+                            {JSON.stringify(responseData)}
+                        </div>
                         <h1 className="text-xl text-c-success font-semibold">Successful</h1>
                         <p className="max-w-[309px] text-base text-c-contrast">Check Your Phone for appealable code. We’ll see you soon</p>
                         <Button className="!text-base w-full h-[50px] hover:bg-c-hover" type="button" onClick={() => setSuccessModal(false)}>Return</Button>
                     </div>
                 </div>
             </CAlertDialog>
-
         </div>
     )
 }

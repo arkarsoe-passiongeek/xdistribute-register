@@ -72,13 +72,13 @@ interface CCountrySelectInputProps {
     defaultValue: string;
 }
 
-export default function CCountrySelectInput({ placeholder, ...rest }: CCountrySelectInputProps) {
+export default function CCountrySelectInput({ placeholder, defaultValue, ...rest }: CCountrySelectInputProps) {
     return (
         <Select {...rest}>
             <SelectTrigger
                 aria-label="select-country-button"
                 id="select-country"
-                className="text-base text-c-contrast [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 [&>span_svg]:text-muted-foreground/80"
+                className={`text-base [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 [&>span_svg]:text-muted-foreground/80 ${defaultValue ? '' : 'text-c-contrast'}`}
             >
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
